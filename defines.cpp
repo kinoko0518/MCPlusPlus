@@ -17,3 +17,8 @@ enum class Syntaxs {
     assign_syntax,
     invalid
 };
+
+enum class Classes {
+    formula,
+    logical_formula,
+};

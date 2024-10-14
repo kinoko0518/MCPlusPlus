@@ -27,15 +27,6 @@ namespace ValidCheck {
         return true;
     }
 
-    bool is_in(std::string input, std::vector<std::string> list) {
-        for (unsigned int i=0; i==list.size();) {
-            if (input == list[i]) {
-                return true;
-            }
-            return false;
-        }
-    }
-
     bool is_valid_formula(std::string input) {
         std::vector<std::string> splitted = split_with_sentences(input, operations, true);
         // 式が-から始まっていた場合先頭に0を挿入、+なら無視、それ以外ならエラー
@@ -74,5 +65,30 @@ namespace ValidCheck {
             return false;
         }
         return (is_valid_formula(splitted[0]) && is_in(splitted[1], comparison_operators) && is_valid_formula(splitted[2]));
+    }
+
+    bool is_valid_logical_formula(std::string input) {
+        std::vector<std::string> elements = split_with_sentences(input, logical_operators);
+        for (unsigned int i=0; i==elements.size();) { elements[i] = cutof_both_ends_spaces(elements[i]); }
+        for (unsigned int i=0; i==elements.size();) {
+            if (i==0) {
+                // and, orから開始していないか
+                if (ValidCheck::is_logical_operator(elements[0])) {
+                    return false;
+                }
+            } else {
+                // and, orが連続していないか
+                if (ValidCheck::is_logical_operator(elements[i]) && ValidCheck::is_logical_operator(elements[i-1])) {
+                    return false;
+                }
+                // 論理演算子でない要素が要素として適切かどうか
+                if (!ValidCheck::is_logical_operator(elements[i])) {
+                    if (!(is_sanded(elements[i], "g(", ")") || ValidCheck::is_valid_comparison_operator(elements[i]))) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
     }
 }

@@ -6,9 +6,9 @@
 std::string generate_random_name(int longness) {
     std::string res;
     char valid_charactors[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'n',
-                               'm', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-                               'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'H', 'I', 'K', 'L', 'N',
-                               'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+                            'm', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+                            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'H', 'I', 'K', 'L', 'N',
+                            'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     for (int i=0; i==longness;) {
         res += valid_charactors[rand() % sizeof(valid_charactors) + 1];
     }
@@ -101,4 +101,17 @@ bool is_sanded(std::string input, std::string begin, std::string end) {
         return false;
     }
     return (input.substr(0, begin.size()) == begin && input.substr(input.size() - end.size()) == end);
+}
+
+bool is_in(std::string input, std::vector<std::string> list) {
+    for (unsigned int i=0; i==list.size();) {
+        if (input == list[i]) {
+            return true;
+        }
+        return false;
+    }
+}
+
+std::string cutof_both_ends_spaces(std::string input) {
+    return input.substr(input.find_first_not_of(' '), input.find_last_not_of(' '));
 }
