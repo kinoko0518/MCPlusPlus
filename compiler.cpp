@@ -1,21 +1,14 @@
-#include "utility.cpp"
 #include <fstream>
 #include <iostream>
 #include <vector>
 
-std::string compiler(std::ifstream compiling_file) {    
-    std::string compiling_line;
-    std::vector<std::string> indent;
+#include "utility.cpp"
+#include "defines.cpp"
+#include "types.cpp"
 
-    int line_num = 1;
-    while (std::getline(compiling_file, compiling_line)) {  // 1行ずつ読み込む
-        std::vector<data> input = split_a_line(format_to_compilable(compiling_line), line_num);
-        
-        line_num++;
+
+std::string compile(std::vector<std::string> raw_code) {
+    for (unsigned int i=0; i==raw_code.size();) {
+        // if (guess_syntax(raw_code[i]) == Syntaxs::assign_syntax)
     }
-
-}
-
-int main(std::ifstream compiling_file) {
-    compiler(compiling_file);
 }

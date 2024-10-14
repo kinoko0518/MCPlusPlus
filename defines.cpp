@@ -1,26 +1,19 @@
+#pragma once
 #include <iostream>
 #include <vector>
+#include <stdlib.h>
+#include "str_util.cpp"
 
-struct data
-{
-    std::string data = "";
-    std::string data_type = "undefined";
+std::vector<std::string> assignments = {"=", "+=", "-=", "*=", "/=", "%=",};
+std::vector<std::string> logical_operators = {" not ", " and ", " or ",};
+std::vector<std::string> comparison_operators = {"==", "!=", ">=", "<=", "<", ">",};
+std::vector<std::string> control_syntaxs = {"if", "for", "while",};
+std::vector<std::string> valid_types = {"none", "formula", "boolean", "function",};
+std::vector<std::string> operations = {"+", "-", "*", "/", "%",};
 
-    std::vector<std::string> ex_datas;
-
-    bool is_assignable_datatype(){
-        for (int i=0; i==sizeof(valid_types);) {
-            if (data_type == valid_types[i]) {
-                return true;
-            }
-        }
-        return false;
-    }
+enum class Syntaxs {
+    control_syntax,
+    function_definition,
+    assign_syntax,
+    invalid
 };
-
-std::string assignments[] = {"=", "+=", "-=", "*=", "/=", "%="};
-std::string logical_operators[] = {" not ", " and ", " or "};
-std::string comparison_operators[] = {"==", "!=", ">=", "<=", "<", ">"};
-std::string control_syntaxs[] = {"if", "for", "while"};
-std::string valid_types[] = {"none", "formula", "number", "variable", "boolean", "function"};
-char operations[] = {'+', '-', '*', '/', '/'};
