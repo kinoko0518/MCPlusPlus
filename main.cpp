@@ -6,7 +6,7 @@
 #include "types.cpp"
 
 
-int main(std::string file_path) {
+int main(std::string file_path, std::string __name_space__) {
     std::vector<std::string> raw_code = function_to_lines(file_path);
     compile(raw_code);
 }

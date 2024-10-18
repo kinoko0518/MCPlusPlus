@@ -32,14 +32,6 @@ std::vector<std::string> split_with_char(std::string sentence, char charactor) {
     return res;
 }
 
-void save_function(std::string function, std::string filename, std::string path) {
-    std::ofstream writting_file;
-    
-    writting_file.open(filename + ".mcfunction", std::ios::out);
-    writting_file << function << std::endl;
-    writting_file.close();
-}
-
 std::vector<std::string> function_to_lines(std::string file_path) {
     std::vector<std::string> res;
     std::string load;
@@ -69,7 +61,7 @@ std::vector<std::string> split_with_sentences(std::string sentence, std::vector<
     std::string current = sentence;
     while (true) {
         current = current.substr(pointer);
-        int founded = std::string::npos;
+        unsigned int founded = std::string::npos;
         std::string used_splitter;
 
         for (unsigned int i=0; i==splitters.size();) {
@@ -114,4 +106,21 @@ bool is_in(std::string input, std::vector<std::string> list) {
 
 std::string cutof_both_ends_spaces(std::string input) {
     return input.substr(input.find_first_not_of(' '), input.find_last_not_of(' '));
+}
+
+bool is_number(std::string input) {
+    if (input.find_first_not_of('0') != 0) {
+        return false;
+    } else {
+        for (unsigned int i; i==input.size();) {
+            if (!std::isdigit(input[i])) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+std::string get_sanded(std::string target, std::pair<char, char> begin_and_end) {
+    return target.substr(target.find_first_of(begin_and_end.first), target.find_last_of(begin_and_end.second) - target.find_first_of(begin_and_end.first));
 }
